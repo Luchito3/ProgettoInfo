@@ -4,20 +4,32 @@
  */
 package model;
 
+import java.util.Objects;
+
 /**
  *
  * @author leporatil
  */
 public class Disciplina {
-   private String codice;
-   private String nome;
-   private int cfu;
-   private Corso corso;
+
+    private String codice;
+    private String nome;
+    private int cfu;
+    private Corso corso;
 
     public Disciplina(String codice, String nome, int cfu) {
         this.codice = codice;
         this.nome = nome;
         this.cfu = cfu;
+    }
+    
+    
+    
+    public Disciplina(String codice, String nome, int cfu, Corso c) {
+        this.codice = codice;
+        this.nome = nome;
+        this.cfu = cfu;
+        this.corso = c;
     }
 
     public Corso getCorso() {
@@ -27,7 +39,7 @@ public class Disciplina {
     public void setCorso(Corso corso) {
         this.corso = corso;
     }
-    
+
     public String getCodice() {
         return codice;
     }
@@ -51,7 +63,17 @@ public class Disciplina {
     public void setCfu(int cfu) {
         this.cfu = cfu;
     }
-   
+    //real
+    public boolean equals(Disciplina d) {
+ 
+        return (this.codice.equals(d.codice));
+    }
+
+    @Override
+    public String toString() {
+        return "Disciplina{" + "codice=" + codice + ", nome=" + nome + ", cfu=" + cfu + ", corso=" + corso.getCodice() + '}';
+    }
     
     
+
 }

@@ -10,13 +10,22 @@ package model;
  */
 public class Docente {
     
-    private String nome, cognome;
+    private String nome, cognome, matricola;
     private Disciplina disc;
 
-    public Docente(String nome, String cognome, Disciplina disc) {
+    public Docente(String matricola, String nome, String cognome, Disciplina disc) {
+        this.matricola=matricola;
         this.nome = nome;
         this.cognome = cognome;
         this.disc = disc;
+    }
+
+    public String getMatricola() {
+        return matricola;
+    }
+
+    public void setMatricola(String matricola) {
+        this.matricola = matricola;
     }
 
     public String getNome() {

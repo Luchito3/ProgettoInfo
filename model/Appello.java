@@ -17,6 +17,26 @@ public class Appello {
     private Docente prof; 
     ArrayList <Studente> alunniIsc = new ArrayList();
 
+    public Appello(String data, String idAppello, Disciplina disc) {
+        this.data = data;
+        this.idAppello = idAppello;
+        this.disc = disc;
+    }
+    
+       public Appello(String data, String idAppello, Disciplina disc, Docente prof) {
+        this.data = data;
+        this.idAppello = idAppello;
+        this.disc = disc;
+        this.prof=prof;
+    }
+    
+    public void addIsc(Studente s){
+        
+        alunniIsc.add(s);
+        
+    }
+    
+    
     public String getIdAppello() {
         return idAppello;
     }
@@ -24,7 +44,7 @@ public class Appello {
     public void setIdAppello(String idAppello) {
         this.idAppello = idAppello;
     }
-
+    
     
     public String getData() {
         return data;
@@ -56,6 +76,11 @@ public class Appello {
 
     public void setAlunniIsc(ArrayList<Studente> alunniIsc) {
         this.alunniIsc = alunniIsc;
+    }
+
+    @Override
+    public String toString() {
+        return idAppello + ";"+data+";"+disc.getCodice();
     }
     
     

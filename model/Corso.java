@@ -23,8 +23,20 @@ public class Corso {
         this.durata = durata;
     }
     
+      public Corso(String codice, String nome, int durata, ArrayList<Disciplina> discipline) {
+        this.codice = codice;
+        this.nome = nome;
+        this.durata = durata;
+        this.discipline = discipline;
+    }
+    
     public void addDisciplina(String codice, String nome, int cfu){
         Disciplina d = new Disciplina(codice, nome, cfu);
+        discipline.add(d);
+        d.setCorso(this);
+    }
+    
+        public void addDisciplina(Disciplina d){
         discipline.add(d);
         d.setCorso(this);
     }

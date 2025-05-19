@@ -13,12 +13,19 @@ import java.util.ArrayList;
 public class GestCorsi {
 
     private ArrayList<Corso> corsi = new ArrayList();
-    
-    
 
     public void addCorso(Corso c) {
 
         corsi.add(c);
+
+    }
+
+    public GestCorsi() {
+
+    }
+
+    public GestCorsi(GestCorsi other) {
+        this.corsi = other.getCorsi();
 
     }
 
@@ -30,7 +37,16 @@ public class GestCorsi {
 
     }
 
-    
+    public Corso cercaCorso(String cod) {
+        for (Corso i : corsi) {
+            if (i.getCodice().equals(cod)) {
+                return i;
+            }
+        }
+        return null;
+
+    }
+
     public void editCorso(int i, String codice, String nome, int durata) {
 
         Corso c = new Corso(codice, nome, durata);
@@ -44,13 +60,10 @@ public class GestCorsi {
         corsi.set(i, c);
 
     }
-    
-    public void removeCorso(int i){
+
+    public void removeCorso(int i) {
         corsi.remove(i);
     }
-             
-    
-    
 
     public ArrayList<Corso> getCorsi() {
         return corsi;
@@ -60,6 +73,16 @@ public class GestCorsi {
 
         return corsi.get(i);
 
+    }
+
+    public boolean removeCorso(String cod) {
+        for (int i = 0; i < corsi.size(); i++) {
+            if (corsi.get(i).getCodice().equals(cod)) {
+                corsi.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setCorsi(ArrayList<Corso> corsi) {

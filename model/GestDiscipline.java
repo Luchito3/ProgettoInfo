@@ -4,14 +4,82 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author leporatil
  */
 public class GestDiscipline {
-    
-    
-    
-    
-    
+
+    private ArrayList<Disciplina> discipline = new ArrayList();
+
+    public void addDisciplina(String codice, String nome, int cfu, Corso c) {
+        Disciplina d = new Disciplina(codice, nome, cfu);
+        d.setCorso(c);
+        discipline.add(d);
+    }
+
+    public void addDisciplina(Disciplina d, Corso c) {
+
+        d.setCorso(c);
+        discipline.add(d);
+    }
+
+    public GestDiscipline() {
+    }
+
+    public GestDiscipline(GestDiscipline gd) {
+        
+        this.discipline=gd.getDiscipline();
+        
+    }
+
+    public void editDisciplina(int i, String codice, String nome, int cfu, Corso c) {
+
+        Disciplina d = new Disciplina(codice, nome, cfu);
+        d.setCorso(c);
+        discipline.set(i, d);
+
+    }
+
+    public Disciplina cercaDisciplina(String c) {
+
+        for (Disciplina i : discipline) {
+
+            if (i.getCodice().equals(c)) {
+
+                return i;
+
+            }
+
+        }
+
+        return null;
+    }
+
+    public ArrayList<Disciplina> cercaDisciplinaPerCorso(String c) {
+        ArrayList<Disciplina> d = new ArrayList();
+        for (Disciplina i : discipline) {
+
+            if (i.getCorso().getCodice().equals(c)) {
+
+                d.add(i);
+
+            }
+
+        }
+
+        return d;
+    }
+
+    public void removeCorso(int i) {
+
+        discipline.remove(i);
+    }
+
+    public ArrayList<Disciplina> getDiscipline() {
+        return discipline;
+    }
+
 }
