@@ -53,6 +53,7 @@ public class StudentiDialog extends javax.swing.JDialog {
         confRem = new javax.swing.JButton();
         AnnullabtR = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -248,6 +249,9 @@ public class StudentiDialog extends javax.swing.JDialog {
         errLabel.setForeground(new java.awt.Color(204, 0, 51));
         errLabel.setText("x");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("Gestione degli Studenti");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -285,10 +289,15 @@ public class StudentiDialog extends javax.swing.JDialog {
                                 .addComponent(Rimuovibt)))
                         .addGap(102, 102, 102))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(modPan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(remPan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(modPan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(remPan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel5)))
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,7 +313,9 @@ public class StudentiDialog extends javax.swing.JDialog {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(Matricolatx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -454,7 +465,7 @@ public class StudentiDialog extends javax.swing.JDialog {
                 GestoreFile.scriviStudenti(gg.gestStudenti);
             }
         } else {
-            mostraErrore("TUTTI I CAMPI SONO OBBLIGATORIs");
+            mostraErrore("Tutti i campi sono obbligatori ed i codici esigono essere validi");
 
         }
 
@@ -489,7 +500,7 @@ public class StudentiDialog extends javax.swing.JDialog {
         String codiceCorso = CDisctx.getText().trim();
 
         if (matricola.isEmpty() || nome.isEmpty() || cognome.isEmpty() || codiceCorso.isEmpty()) {
-            mostraErrore("TUTTI I CAMPI SONO OBBLIGATORI");
+            mostraErrore("Tutti i campi sono obbligatori ed i codici esigono essere validi");
             return null; // ← aggiunto return!
         }
 
@@ -588,6 +599,7 @@ public class StudentiDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField matricRem;

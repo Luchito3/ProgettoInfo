@@ -4,9 +4,19 @@
  */
 package view;
 
+import Controller.GestoreFile;
+import Controller.GestoreGenerale;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.AbstractMap;
+import javax.swing.JLabel;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+import model.*;
+
 /**
  *
- * @author leporatil
+ * @author admin
  */
 public class IscrizioniDialog extends javax.swing.JDialog {
 
@@ -16,6 +26,7 @@ public class IscrizioniDialog extends javax.swing.JDialog {
     public IscrizioniDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        inizializzaDati();
     }
 
     /**
@@ -27,25 +38,472 @@ public class IscrizioniDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TabellaDoc = new javax.swing.JTable();
+        Matricolatx = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        Nometx = new javax.swing.JTextField();
+        Aggiungibt = new javax.swing.JButton();
+        Modificabt = new javax.swing.JButton();
+        Rimuovibt = new javax.swing.JButton();
+        modPan = new javax.swing.JPanel();
+        oldMatric = new javax.swing.JTextField();
+        confModif = new javax.swing.JButton();
+        Annullabt = new javax.swing.JButton();
+        remPan = new javax.swing.JPanel();
+        matricRem = new javax.swing.JTextField();
+        confRem = new javax.swing.JButton();
+        AnnullabtR = new javax.swing.JButton();
+        errLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Id Appello");
+
+        TabellaDoc.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Id Appello", "Matricola Studente"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(TabellaDoc);
+
+        Matricolatx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MatricolatxActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Matricola Studente");
+
+        Nometx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NometxActionPerformed(evt);
+            }
+        });
+
+        Aggiungibt.setText("Aggiungi");
+        Aggiungibt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AggiungibtActionPerformed(evt);
+            }
+        });
+
+        Modificabt.setText("Modifica");
+        Modificabt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificabtActionPerformed(evt);
+            }
+        });
+
+        Rimuovibt.setText("Rimuovi");
+        Rimuovibt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RimuovibtActionPerformed(evt);
+            }
+        });
+
+        modPan.setBackground(new java.awt.Color(153, 153, 153));
+
+        oldMatric.setText("IdAppello,Matricola");
+        oldMatric.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oldMatricActionPerformed(evt);
+            }
+        });
+
+        confModif.setText("Ok");
+        confModif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confModifActionPerformed(evt);
+            }
+        });
+
+        Annullabt.setText("Annulla");
+        Annullabt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnnullabtActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout modPanLayout = new javax.swing.GroupLayout(modPan);
+        modPan.setLayout(modPanLayout);
+        modPanLayout.setHorizontalGroup(
+            modPanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modPanLayout.createSequentialGroup()
+                .addGroup(modPanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modPanLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Annullabt)
+                        .addGap(28, 28, 28)
+                        .addComponent(confModif))
+                    .addGroup(modPanLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(oldMatric, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        modPanLayout.setVerticalGroup(
+            modPanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modPanLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(oldMatric, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(modPanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Annullabt)
+                    .addComponent(confModif))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        remPan.setBackground(new java.awt.Color(153, 153, 153));
+
+        matricRem.setText("IdAppello,Matricola");
+        matricRem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matricRemActionPerformed(evt);
+            }
+        });
+
+        confRem.setText("Ok");
+        confRem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confRemActionPerformed(evt);
+            }
+        });
+
+        AnnullabtR.setText("Annulla");
+        AnnullabtR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnnullabtRActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout remPanLayout = new javax.swing.GroupLayout(remPan);
+        remPan.setLayout(remPanLayout);
+        remPanLayout.setHorizontalGroup(
+            remPanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(remPanLayout.createSequentialGroup()
+                .addGroup(remPanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(remPanLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(AnnullabtR)
+                        .addGap(28, 28, 28)
+                        .addComponent(confRem))
+                    .addGroup(remPanLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(matricRem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        remPanLayout.setVerticalGroup(
+            remPanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(remPanLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(matricRem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(remPanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AnnullabtR)
+                    .addComponent(confRem))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        errLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        errLabel.setForeground(new java.awt.Color(204, 0, 51));
+        errLabel.setText("x");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Gestione delle Iscrizioni");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(modPan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(remPan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(Aggiungibt)
+                        .addGap(18, 18, 18)
+                        .addComponent(Modificabt)
+                        .addGap(18, 18, 18)
+                        .addComponent(Rimuovibt))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Nometx, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Matricolatx, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(errLabel)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Matricolatx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Nometx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Aggiungibt)
+                    .addComponent(Modificabt)
+                    .addComponent(Rimuovibt))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(remPan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(modPan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void MatricolatxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MatricolatxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MatricolatxActionPerformed
+
+    private void NometxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NometxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NometxActionPerformed
+
+
+    private void ModificabtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificabtActionPerformed
+
+        modPan.setVisible(true);
+
+    }//GEN-LAST:event_ModificabtActionPerformed
+
+    private void oldMatricActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldMatricActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oldMatricActionPerformed
+
+    private void AnnullabtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnullabtActionPerformed
+        // TODO add your handling code here:
+        modPan.setVisible(false);
+    }//GEN-LAST:event_AnnullabtActionPerformed
+
+    private void confModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confModifActionPerformed
+        // TODO add your handling code here:
+
+        GestoreGenerale gg = GestoreGenerale.getInstance();
+
+        AbstractMap.SimpleEntry<String, String> nuovaIscrizione = getFormIscrizione(gg);
+
+        String[] tokens = oldMatric.getText().split(",");
+        if (tokens.length != 2) {
+            mostraErrore("Formato matricola/appello non valido. Usa: idAppello,matricola");
+            return;
+        }
+
+        String oldIdAppello = tokens[0].trim();
+        String oldMatricola = tokens[1].trim();
+
+        AbstractMap.SimpleEntry<String, String> vecchiaIscrizione = new AbstractMap.SimpleEntry<>(oldIdAppello, oldMatricola);
+
+        if (gg.gestIscrizioni.replaceIscrizione(vecchiaIscrizione, nuovaIscrizione)) {
+            popolaTabella(gg);
+            GestoreFile.scriviIscrizioni(gg.gestIscrizioni);
+            oldMatric.setText("codice da modificare");
+        } else {
+            mostraErrore("Iscrizione da modificare non trovata.");
+        }
+
+
+    }//GEN-LAST:event_confModifActionPerformed
+
+    private void RimuovibtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RimuovibtActionPerformed
+        // TODO add your handling code here:
+        remPan.setVisible(true);
+
+
+    }//GEN-LAST:event_RimuovibtActionPerformed
+
+    private void matricRemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matricRemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_matricRemActionPerformed
+
+    private void confRemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confRemActionPerformed
+
+        GestoreGenerale gg = GestoreGenerale.getInstance();
+
+        String[] tokens = matricRem.getText().split(",");
+        
+        if (tokens.length != 2 || tokens[0].isBlank() || tokens[1].isBlank()) {
+            mostraErrore("Formato non valido. Usa: idAppello,matricola");
+            return;
+        }
+
+        String idAppello = tokens[0].trim();
+        String matricola = tokens[1].trim();
+System.out.println("Sto cercando: " + tokens[0] + "," + tokens[1]);
+        AbstractMap.SimpleEntry<String, String> targetIscrizione = new AbstractMap.SimpleEntry<>(idAppello, matricola);
+
+        boolean removed = gg.gestIscrizioni.removeIscrizione(targetIscrizione);
+
+        if (removed) {
+            popolaTabella(gg);
+            GestoreFile.scriviIscrizioni(gg.gestIscrizioni);
+            matricRem.setText("idAppello,Matricola");
+        } else {
+            mostraErrore("Iscrizione non trovata.");
+        }
+
+    }//GEN-LAST:event_confRemActionPerformed
+
+    private void AnnullabtRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnullabtRActionPerformed
+        // TODO add your handling code here:
+
+        remPan.setVisible(false);
+
+
+    }//GEN-LAST:event_AnnullabtRActionPerformed
+
+    private void AggiungibtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AggiungibtActionPerformed
+        // TODO add your handling code here:
+
+        GestoreGenerale gg = GestoreGenerale.getInstance();
+        AbstractMap.SimpleEntry<String, String> iscr = getFormIscrizione(gg);
+
+        if (iscr == null || iscr.getKey().isEmpty() || iscr.getValue().isEmpty()) {
+            mostraErrore("Tutti i campi sono obbligatori.");
+            return;
+        }
+
+        // Controllo validità studente e appello
+        if (gg.gestStudenti.cercaStudente(iscr.getValue()) == null
+                || gg.gestAppelli.cercaAppello(iscr.getKey()) == null) {
+            mostraErrore("Codici non validi: studente o appello non trovato.");
+            return;
+        }
+
+        // Controllo duplicato
+        if (gg.gestIscrizioni.containsIscrizione(iscr)) {
+            mostraErrore("Iscrizione già presente.");
+            return;
+        }
+
+        // Aggiunta e salvataggio
+        gg.gestIscrizioni.addIscrizione(iscr);
+        popolaTabella(gg);
+        GestoreFile.scriviIscrizioni(gg.gestIscrizioni);
+
+
+    }//GEN-LAST:event_AggiungibtActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    public void popolaTabella(GestoreGenerale gg) {
+
+        DefaultTableModel modello = (DefaultTableModel) TabellaDoc.getModel();
+
+        modello.setRowCount(0);
+
+        for (AbstractMap.SimpleEntry<String, String> d : gg.gestIscrizioni.getIscrizioni()) {
+            Object[] riga = {
+                d.getKey(),
+                d.getValue(),};
+            modello.addRow(riga);
+        }
+
+    }
+
+    public AbstractMap.SimpleEntry<String, String> getFormIscrizione(GestoreGenerale gg) {
+        String mStudente = Matricolatx.getText().trim();
+        String cDisc = Nometx.getText().trim();
+
+        if (mStudente.isEmpty() || cDisc.isEmpty()) {
+            mostraErrore("Tutti i campi sono obbligatori ed i codici esigono essere validi");
+            return null;
+        }
+        AbstractMap.SimpleEntry<String, String> s = new AbstractMap.SimpleEntry<>(mStudente, cDisc);
+
+        return s;
+
+    }
+
+    private Timer timerErrore;
+
+    public void mostraErrore(String testo) {
+        errLabel.setText(testo);
+        errLabel.setVisible(true);
+
+        if (timerErrore != null && timerErrore.isRunning()) {
+            timerErrore.stop();
+        }
+
+        timerErrore = new Timer(3000, e -> {
+            errLabel.setVisible(false);
+            timerErrore.stop();
+        });
+        timerErrore.setRepeats(false);
+        timerErrore.start();
+    }
+
+    public void inizializzaDati() {
+
+        GestoreGenerale gg = GestoreGenerale.getInstance();
+        popolaTabella(gg);
+
+        modPan.setVisible(false);
+        remPan.setVisible(false);
+        errLabel.setVisible(false);
+
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -86,5 +544,25 @@ public class IscrizioniDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Aggiungibt;
+    private javax.swing.JButton Annullabt;
+    private javax.swing.JButton AnnullabtR;
+    private javax.swing.JTextField Matricolatx;
+    private javax.swing.JButton Modificabt;
+    private javax.swing.JTextField Nometx;
+    private javax.swing.JButton Rimuovibt;
+    private javax.swing.JTable TabellaDoc;
+    private javax.swing.JButton confModif;
+    private javax.swing.JButton confRem;
+    private javax.swing.JLabel errLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField matricRem;
+    private javax.swing.JPanel modPan;
+    private javax.swing.JTextField oldMatric;
+    private javax.swing.JPanel remPan;
     // End of variables declaration//GEN-END:variables
 }
