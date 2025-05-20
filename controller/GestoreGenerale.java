@@ -11,7 +11,7 @@ import model.*;
  */
 public class GestoreGenerale {
 
-    // ISTANZA UNICA
+    
     private static GestoreGenerale instance;
 
     public final GestStudenti gestStudenti;
@@ -19,14 +19,15 @@ public class GestoreGenerale {
     public final GestDiscipline gestDiscipline;
     public final GestCorsi gestCorsi;
     public final GestAppelli gestAppelli;
-   // public final GestIscrizioni gestIscrizioni;
-
+    public final GestIscrizioni gestIscrizioni;
+   
     private GestoreGenerale() {
     gestCorsi = new GestCorsi(GestoreFile.leggiCorsiCSV());
     gestStudenti = new GestStudenti(GestoreFile.leggiStudentiCSV(gestCorsi));
     gestDiscipline = new GestDiscipline(GestoreFile.leggiDisciplineCSV(gestCorsi));
     gestDocenti = new GestDocenti(GestoreFile.leggiDocentiCSV(gestDiscipline));
     gestAppelli = new GestAppelli(GestoreFile.leggiAppelliCSV(gestDiscipline));
+    gestIscrizioni = new GestIscrizioni(GestoreFile.leggiIscrizioniCSV(gestStudenti, gestAppelli));
     }
 
     public static GestoreGenerale getInstance() {

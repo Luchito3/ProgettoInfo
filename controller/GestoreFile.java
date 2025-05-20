@@ -215,13 +215,52 @@ public class GestoreFile {
         return GS;
 
     }
+    
+    public static GestIscrizioni leggiIscrizioniCSV(GestStudenti GS, GestAppelli GA) {
+        GestIscrizioni GI = new GestIscrizioni();
+        String ch = ";";
+        String filename = "iscrizioni_appelli.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+
+            String line;
+
+            // Salta la riga di intestazione
+            br.readLine();
+
+            while ((line = br.readLine()) != null) {
+                if (line.trim().isEmpty()) {
+                    continue; // salta righe vuote
+                }
+                String[] tokens = line.split(ch);
+
+                if (tokens.length >= 2) {
+                    String idAppello = tokens[0];
+                    String matStudente = tokens[1];
+                    
+
+                    Studente s = GS.cercaStudente(matStudente);
+                    Appello a = GA.cercaAppello(idAppello);
+                   
+                    a.addIsc(s);
+                    
+                    GI.addIscrizione(a, s);
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Errore: " + e.getMessage());
+        }
+
+        return GI;
+
+    }
 
     public static void scriviAppelli(GestAppelli GA) {
-        
-        String filename="appelli.csv";
+
+        String filename = "appelli.csv";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            
-        
+
             writer.write(GA.toString());
 
         } catch (IOException e) {
@@ -230,5 +269,77 @@ public class GestoreFile {
         }
 
     }
+
+    public static void scriviStudenti(GestStudenti GS) {
+
+        String filename = "studenti.csv";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+
+            writer.write(GS.toString());
+
+        } catch (IOException e) {
+
+            System.err.println("Errore: " + e.getMessage());
+        }
+
+    }
+   public static void scriviDiscipline(GestDiscipline GD) {
+
+        String filename = "discipline.csv";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+
+            writer.write(GD.toString());
+
+        } catch (IOException e) {
+
+            System.err.println("Errore: " + e.getMessage());
+        }
+
+    }
+   
+    public static void scriviCorsi(GestCorsi GC) {
+
+        String filename = "corsi.csv";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+
+            writer.write(GC.toString());
+
+        } catch (IOException e) {
+
+            System.err.println("Errore: " + e.getMessage());
+        }
+
+    }
+     public static void scriviDocenti(GestDocenti GD) {
+
+        String filename = "docenti.csv";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+
+            writer.write(GD.toString());
+
+        } catch (IOException e) {
+
+            System.err.println("Errore: " + e.getMessage());
+        }
+
+    }
+     
+      public static void scriviIscrizioni(GestIscrizioni GI) {
+
+        String filename = "iscrizioni_appelli.csv";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+
+            writer.write(GI.toString());
+
+        } catch (IOException e) {
+
+            System.err.println("Errore: " + e.getMessage());
+        }
+
+    }
+
+    
+    
+    
 
 }
