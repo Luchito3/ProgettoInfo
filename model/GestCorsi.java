@@ -46,6 +46,17 @@ public class GestCorsi {
         return null;
 
     }
+    
+    public void estinguiDisciplina(Disciplina d){
+        
+        for(Corso c: corsi){
+            
+            c.rimuoviDisciplina(d);
+            
+        }
+        
+        
+    }
 
     public void editCorso(int i, String codice, String nome, int durata) {
 
@@ -88,5 +99,18 @@ public class GestCorsi {
     public void setCorsi(ArrayList<Corso> corsi) {
         this.corsi = corsi;
     }
-
+      @Override
+    public String toString() {
+        String s="";
+        s+= "codiceCorso;nomeCorso;durataAnni\n";
+        
+        for(Corso i : corsi){
+            
+            s+=i + "\n";
+            
+        }
+        
+        
+        return s;
+    }
 }

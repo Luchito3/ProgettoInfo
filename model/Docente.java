@@ -9,15 +9,29 @@ package model;
  * @author leporatil
  */
 public class Docente {
-    
+
     private String nome, cognome, matricola;
     private Disciplina disc;
 
     public Docente(String matricola, String nome, String cognome, Disciplina disc) {
-        this.matricola=matricola;
+        this.matricola = matricola;
         this.nome = nome;
         this.cognome = cognome;
         this.disc = disc;
+    }
+
+    public Docente(Docente other) {
+        this.matricola = other.matricola;
+        this.nome = other.nome;
+        this.cognome = other.cognome;
+        this.disc = other.disc;
+    }
+
+    public void setAll(Docente other) {
+        this.matricola = other.matricola;
+        this.nome = other.nome;
+        this.cognome = other.cognome;
+        this.disc = other.disc;
     }
 
     public String getMatricola() {
@@ -51,9 +65,10 @@ public class Docente {
     public void setDisc(Disciplina disc) {
         this.disc = disc;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return matricola + ";" + nome + ";" + cognome + ";" + disc.getCodice();
+    }
+
 }

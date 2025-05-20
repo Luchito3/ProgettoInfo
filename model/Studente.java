@@ -21,7 +21,14 @@ public class Studente {
         this.cognome = cognome;
         this.corso = corso;
     }
-
+    
+      public void setAll(Studente other) {
+        this.matricola = other.matricola;
+        this.nome = other.nome;
+        this.cognome = other.cognome;
+        this.corso = other.corso;
+    }
+    
     public String getMatricola() {
         return matricola;
     }

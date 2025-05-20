@@ -39,6 +39,18 @@ public class GestStudenti {
         }
         return null;
     }
+    
+     public void rimuoviStudente(String matricola) {
+        for (int i = 0; i < studenti.size(); i++) {
+            if (studenti.get(i).getMatricola().equalsIgnoreCase(matricola)) {
+                studenti.remove(i);
+                break;
+            }
+        }
+
+    }
+    
+    
 
     public ArrayList<Studente> getStudenti() {
         return studenti;

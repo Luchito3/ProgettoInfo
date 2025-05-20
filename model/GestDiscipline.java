@@ -30,9 +30,9 @@ public class GestDiscipline {
     }
 
     public GestDiscipline(GestDiscipline gd) {
-        
-        this.discipline=gd.getDiscipline();
-        
+
+        this.discipline = gd.getDiscipline();
+
     }
 
     public void editDisciplina(int i, String codice, String nome, int cfu, Corso c) {
@@ -78,8 +78,32 @@ public class GestDiscipline {
         discipline.remove(i);
     }
 
+    public void rimuoviDisciplina(String codice) {
+        for (int i = 0; i < discipline.size(); i++) {
+            if (discipline.get(i).getCodice().equalsIgnoreCase(codice)) {
+                discipline.remove(i);
+                break;
+            }
+        }
+
+    }
+
     public ArrayList<Disciplina> getDiscipline() {
         return discipline;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        s += "codiceDisciplina;nomeDisciplina;cfu;codiceCorso\n";
+
+        for (Disciplina i : discipline) {
+
+            s += i + "\n";
+
+        }
+
+        return s;
     }
 
 }

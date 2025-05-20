@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.Objects;
+
 
 /**
  *
@@ -68,10 +68,19 @@ public class Disciplina {
  
         return (this.codice.equals(d.codice));
     }
+    
+    public void setAll(Disciplina other){
+        
+         this.codice = other.codice;
+        this.nome = other.nome;
+        this.cfu = other.cfu;
+        this.corso = other.corso;
+    }
+    
 
     @Override
     public String toString() {
-        return "Disciplina{" + "codice=" + codice + ", nome=" + nome + ", cfu=" + cfu + ", corso=" + corso.getCodice() + '}';
+        return codice +";" + nome+";"+cfu+";"+corso.getCodice() ;
     }
     
     

@@ -40,6 +40,39 @@ public class Corso {
         discipline.add(d);
         d.setCorso(this);
     }
+    public void setAll(Corso other) {
+        this.codice = other.codice;
+        this.nome = other.nome;
+        this.durata = other.durata;
+        this.discipline = other.discipline;
+    }    
+    
+        
+    public boolean hasDisciplina(Disciplina d){
+        
+        for(Disciplina i : discipline){
+            
+            if(i.equals(d)){
+                
+                return true;
+            }
+            
+        }
+        return false;
+    }
+    
+       public boolean rimuoviDisciplina(Disciplina d){
+        
+        for(int i = 0; i<discipline.size(); i++){
+            
+            if(discipline.get(i)==d){
+                discipline.remove(i);
+                return true;
+            }
+            
+        }
+        return false;
+    }
     
     
     public String getCodice() {
@@ -68,7 +101,7 @@ public class Corso {
 
     @Override
     public String toString() {
-        return "Corso{" + "codice=" + codice + ", nome=" + nome + ", durata=" + durata + '}';
+        return codice + ";"+nome+";"+durata;
     }
     
     

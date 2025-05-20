@@ -36,6 +36,16 @@ public class GestDocenti {
         return null; // non trovato
     }
 
+    public void rimuoviDocente(String matricola) {
+        for (int i = 0; i < listaDocenti.size(); i++) {
+            if (listaDocenti.get(i).getMatricola().equalsIgnoreCase(matricola)) {
+                listaDocenti.remove(i);
+                break;
+            }
+        }
+
+    }
+
     public ArrayList<Docente> getListaDocenti() {
         return listaDocenti;
     }

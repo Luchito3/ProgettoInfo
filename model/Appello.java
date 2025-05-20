@@ -23,12 +23,21 @@ public class Appello {
         this.disc = disc;
     }
     
-       public Appello(String data, String idAppello, Disciplina disc, Docente prof) {
+    
+    
+    public Appello(String data, String idAppello, Disciplina disc, Docente prof) {
         this.data = data;
         this.idAppello = idAppello;
         this.disc = disc;
         this.prof=prof;
     }
+     public void setAll(Appello other) {
+        this.data = other.data;
+        this.idAppello = other.idAppello;
+        this.disc = other.disc;
+        this.prof=other.prof;
+    }
+    
     
     public void addIsc(Studente s){
         

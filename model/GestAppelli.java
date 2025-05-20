@@ -52,7 +52,29 @@ public class GestAppelli {
     public void setAppelli(ArrayList<Appello> appelli) {
         this.appelli = appelli;
     }
+    
+    public Appello cercaAppello(String id){
+        
+        for(Appello i:appelli){
+            
+            if(i.getIdAppello().equals(id)){
+                
+                return i;
+            }
+        }
+        return null;
+    }
+    
+   public void rimuoviAppello(String id) {
+        for (int i = 0; i < appelli.size(); i++) {
+            if (appelli.get(i).getIdAppello().equalsIgnoreCase(id)) {
+                appelli.remove(i);
+                break;
+            }
+        }
 
+    }
+    
     @Override
     public String toString() {
         String s="";
